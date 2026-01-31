@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Undangan Pernikahan Premium - Dark Brown Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        :root {
+            /* Warna Cokelat Tua Premium sesuai gambar */
+            --bg-dark: #6e3a07; 
+            --gold-primary: #d4af37;
+            --gold-light: #f9e29c;
+            --text-light: #f8f1e5;
+            --text-dim: rgba(248, 241, 229, 0.7);
+        }
+
+        * { 
+            scroll-behavior: smooth; 
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            margin: 0;
+            width: 100%;
+        }
+
+        /* Bingkai Emas Mewah (Frame) */
+        .frame-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .frame-line {
+            position: absolute;
+            inset: 10px;
+            border: 1px solid var(--gold-primary);
+            opacity: 0.6;
+        }
+
+        .frame-inner {
+            position: absolute;
+            inset: 18px;
+            border: 0.5px solid var(--gold-primary);
+            opacity: 0.3;
+        }
+
+        .font-jawa { font-family: 'Cinzel Decorative', cursive; }
+        .font-handwriting { font-family: 'Great Vibes', cursive; }
+
+        .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        /* PERBAIKAN UTAMA: Penyesuaian agar teks tidak terpotong sama sekali */
+        .main-title {
+            font-size: clamp(1.8rem, 10vw, 4.5rem); /* Mengecilkan min-size sedikit */
+            line-height: 1.4;
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0 25px; /* Memberikan padding lebih besar agar tidak kena bingkai */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        /* Khusus untuk footer agar ukuran proporsional dan tidak terpotong */
+        .footer-title {
+            font-size: clamp(2.5rem, 12vw, 4rem);
+            line-height: 1.2;
+            padding: 0 20px;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background-color: var(--bg-dark);
+        }
+
+        .btn-gold {
+            background: linear-gradient(45deg, #bf953f, #fcf6ba);
+            color: #4a2a05;
+            font-weight: 800;
+            padding: 14px 40px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 3px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s;
+            border: none;
+        }
+
+        .glass-card {
+            background: rgba(110, 58, 7, 0.4);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 3rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            width: 100%;
+        }
+
+        .nav-dock {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4a2a05;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            gap: 15px;
+            z-index: 4500;
+            border: 1px solid var(--gold-primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-icon {
+            color: var(--gold-light);
+            font-size: 0.6rem;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Styling Foto Mempelai Sejajar Sempurna */
+        .couple-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 5px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .couple-box {
+            flex: 1;
+            text-align: center;
+        }
+
+        .couple-img-wrapper {
+            width: 100%;
+            max-width: 110px;
+            aspect-ratio: 1/1;
+            margin: 0 auto 15px;
+            border: 2px solid var(--gold-primary);
+            padding: 4px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--bg-dark);
+        }
+
+        .couple-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: sepia(30%);
+        }
+
+        .gold-line {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
+            width: 150px;
+            margin: 20px auto;
+        }
+
+        /* Section backgrounds */
+        section {
+            background-color: var(--bg-dark);
+        }
+
+        input, select, textarea {
+            color: var(--text-light) !important;
+        }
+
+        ::placeholder {
+            color: var(--text-dim) !important;
+            opacity: 0.5;
+        }
+
+        /* Tambahan CSS Khusus Story Love */
+        .timeline {
+            position: relative;
+            max-width: 320px;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            background: var(--gold-primary);
+            top: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -24px;
+            width: 9px;
+            height: 9px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            top: 5px;
+            box-shadow: 0 0 10px var(--gold-primary);
+        }
+
+        .story-date {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .story-content {
+            font-size: 11px;
+            color: var(--text-light);
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Elemen Bingkai Mewah -->
+    <div class="frame-container">
+        <div class="frame-line"></div>
+        <div class="frame-inner"></div>
+    </div>
+
+    <!-- Cover Overlay -->
+    <div id="overlay" class="fixed inset-0 z-[10000] flex items-center justify-center text-center overflow-hidden" style="background-color: var(--bg-dark);">
+        <div class="relative z-10 w-full animate__animated animate__fadeIn px-4">
+            <div class="mb-4">
+                <span class="gold-text text-4xl">⚜</span>
+            </div>
+            <p class="font-jawa text-gold-light/70 text-[9px] mb-4 tracking-[0.4em] uppercase">PERNIKAHAN MULIA</p>
+            
+            <div class="w-full mb-8 flex justify-center">
+                <h1 class="font-handwriting main-title gold-text">
+                    Bimo & Anisa
+                </h1>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="py-5 border-y border-gold-primary/30 inline-block px-10">
+                    <p class="text-gold-light/50 text-[8px] uppercase tracking-[0.4em] mb-2">Kepada Yth Bapak/Ibu/Saudara/i:</p>
+                    <h3 class="text-lg font-light text-white tracking-widest uppercase">Tamu Undangan</h3>
+                </div>
+                <div class="pt-6">
+                    <button onclick="bukaUndangan()" class="btn-gold">Buka Undangan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="musik" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Content -->
+    <main id="main-content" class="opacity-0 transition-opacity duration-1000">
+        
+        <!-- Hero Section -->
+        <section id="home" class="wrapper">
+            <div class="text-center reveal-top w-full">
+                <p class="text-[9px] text-gold-light tracking-[0.4em] mb-4 uppercase font-semibold">The Wedding Celebration</p>
+                <div class="w-full mb-4 flex justify-center">
+                    <h1 class="font-handwriting main-title gold-text">Bimo & Anisa</h1>
+                </div>
+                
+                <div class="gold-line"></div>
+                
+                <div class="max-w-[280px] mx-auto mb-8">
+                    <p class="text-[10px] leading-relaxed text-text-light/80 italic">
+                        "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri..."
+                        <br><span class="font-bold mt-2 block text-gold-primary uppercase tracking-widest">(QS. Ar-Rum: 21)</span>
+                    </p>
+                </div>
+
+                <!-- Countdown -->
+                <div id="timer" class="flex justify-center gap-2 mt-6">
+                    <div class="bg-black/20 p-3 rounded-lg border border-gold-primary/20 w-16 shadow-sm">
+                        <span id="hari" class="block text-xl font-bold gold-text">00</span><span class="text-[7px] text-white uppercase opacity-60 tracking-tighter">Hari</span>
+                    </div>
+                    <div class="bg-black/20 p-3 rounded-lg border border-gold-primary/20 w-16 shadow-sm">
+                        <span id="jam" class="block text-xl font-bold gold-text">00</span><span class="text-[7px] text-white uppercase opacity-60 tracking-tighter">Jam</span>
+                    </div>
+                    <div class="bg-black/20 p-3 rounded-lg border border-gold-primary/20 w-16 shadow-sm">
+                        <span id="menit" class="block text-xl font-bold gold-text">00</span><span class="text-[7px] text-white uppercase opacity-60 tracking-tighter">Menit</span>
+                    </div>
+                    <div class="bg-black/20 p-3 rounded-lg border border-gold-primary/20 w-16 shadow-sm">
+                        <span id="detik" class="block text-xl font-bold gold-text">00</span><span class="text-[7px] text-white uppercase opacity-60 tracking-tighter">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mempelai Section -->
+        <section id="couple" class="py-24 px-4 text-center" style="background-color: rgba(0,0,0,0.1);">
+            <h2 class="reveal-top font-jawa text-xs text-gold-primary mb-16 tracking-[0.3em] uppercase">Mempelai</h2>
+            
+            <div class="couple-container">
+                <!-- Mempelai Pria -->
+                <div class="couple-box reveal-left">
+                    <div class="couple-img-wrapper">
+                        <img src="foto (1).jpg" alt="Bimo">
+                    </div>
+                    <h3 class="font-handwriting text-2xl gold-text mb-2">Bimo Wicaksono</h3>
+                    <p class="text-[8px] text-text-light/70 tracking-tight leading-tight uppercase font-light">Putra dari Bpk. Sujatmiko<br>& Ibu Ratna</p>
+                </div>
+
+                <!-- Simbol & -->
+                <div class="self-center font-handwriting text-3xl gold-text opacity-40 px-2 mb-10">
+                    &
+                </div>
+
+                <!-- Mempelai Wanita -->
+                <div class="couple-box reveal-right">
+                    <div class="couple-img-wrapper">
+                        <img src="foto (2).jpg" alt="Anisa">
+                    </div>
+                    <h3 class="font-handwriting text-2xl gold-text mb-2">Anisa Larasati</h3>
+                    <p class="text-[8px] text-text-light/70 tracking-tight leading-tight uppercase font-light">Putri dari Bpk. Hartono<br>& Ibu Sri</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeri Section -->
+        <section id="gallery" class="py-24 px-6">
+            <h2 class="reveal-top font-jawa text-center gold-text text-xs mb-12 tracking-[0.3em] uppercase font-bold">Galeri Kasih</h2>
+            <div class="grid grid-cols-2 gap-4 max-w-md mx-auto reveal-bottom">
+                <img src="foto (3).jpg" class="rounded-lg border border-gold-primary/20 shadow-xl">
+                <img src="foto (4).jpg" class="rounded-lg border border-gold-primary/20 shadow-xl">
+                <img src="foto (5).jpg" class="rounded-lg border border-gold-primary/20 shadow-xl">
+                <img src="foto (6).jpg" class="rounded-lg border border-gold-primary/20 shadow-xl">
+            </div>
+        </section>
+
+        <!-- Story Love Section -->
+        <section id="story" class="py-24 px-6 text-center">
+            <h2 class="reveal-top font-jawa gold-text text-xs mb-16 tracking-[0.3em] uppercase font-bold">Kisah Cinta</h2>
+            <div class="timeline text-left reveal-bottom">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="story-date">Januari 2022</span>
+                    <h4 class="font-bold text-gold-primary text-xs uppercase tracking-widest mb-2">Pertemuan Pertama</h4>
+                    <p class="story-content italic">Awal sebuah cerita saat takdir mempertemukan kami dalam sebuah kegiatan yang tak terduga. Sebuah sapaan sederhana yang menjadi awal segalanya.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="story-date">Mei 2023</span>
+                    <h4 class="font-bold text-gold-primary text-xs uppercase tracking-widest mb-2">Menjalin Kasih</h4>
+                    <p class="story-content italic">Setelah sekian lama mengenal, kami memutuskan untuk saling berkomitmen. Berbagi suka dan duka, belajar saling memahami dan menguatkan satu sama lain.</p>
+                </div>
+                <div class="timeline-item" style="padding-bottom: 0;">
+                    <div class="timeline-dot"></div>
+                    <span class="story-date">Agustus 2025</span>
+                    <h4 class="font-bold text-gold-primary text-xs uppercase tracking-widest mb-2">Lamaran</h4>
+                    <p class="story-content italic">Di hadapan kedua orang tua, kami mengikat janji suci untuk melangkah ke jenjang yang lebih serius. Sebuah langkah nyata menuju hari bahagia kami.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gift Section (Updated with 2 Wallets) -->
+        <section id="gift" class="py-24 px-6 text-center" style="background-color: rgba(0,0,0,0.15);">
+            <div class="glass-card max-w-sm mx-auto reveal-bottom">
+                <h2 class="font-jawa gold-text text-xs mb-8 tracking-widest uppercase font-bold">Kado Digital</h2>
+                
+                <div class="space-y-6">
+                    <!-- Dompet 1 -->
+                    <div class="bg-black/30 p-6 rounded-xl border border-gold-primary/10 shadow-inner">
+                        <p class="text-[8px] font-bold text-gold-light/60 mb-2 uppercase tracking-widest">Bank Central Asia (BCA)</p>
+                        <p class="text-xl tracking-widest font-light mb-6 gold-text">8810234567</p>
+                        <button onclick="copyToClipboard('8810234567')" class="text-[9px] font-bold border border-gold-primary px-8 py-3 text-gold-primary rounded-full hover:bg-gold-primary hover:text-black transition-all">SALIN NOMOR</button>
+                        <p class="text-[10px] text-gold-light/40 mt-4 italic">a/n Bimo Wicaksono</p>
+                    </div>
+
+                    <!-- Dompet 2 (NEW) -->
+                    <div class="bg-black/30 p-6 rounded-xl border border-gold-primary/10 shadow-inner">
+                        <p class="text-[8px] font-bold text-gold-light/60 mb-2 uppercase tracking-widest">Bank Mandiri</p>
+                        <p class="text-xl tracking-widest font-light mb-6 gold-text">1234567890123</p>
+                        <button onclick="copyToClipboard('1234567890123')" class="text-[9px] font-bold border border-gold-primary px-8 py-3 text-gold-primary rounded-full hover:bg-gold-primary hover:text-black transition-all">SALIN NOMOR</button>
+                        <p class="text-[10px] text-gold-light/40 mt-4 italic">a/n Anisa Larasati</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section (WhatsApp Functionality Integrated) -->
+        <section id="rsvp" class="py-24 px-6 text-center">
+            <div class="glass-card max-w-sm mx-auto reveal-bottom">
+                <h2 class="font-jawa gold-text text-xs mb-10 tracking-widest uppercase font-bold">Buku Tamu</h2>
+                <div class="space-y-6 text-left">
+                    <div class="space-y-1">
+                        <label class="text-[9px] text-gold-light/60 uppercase tracking-widest ml-1">Nama Lengkap</label>
+                        <input id="nama" type="text" placeholder="Masukkan nama Anda" class="w-full border-b border-gold-primary/30 py-3 text-xs outline-none focus:border-gold-primary transition bg-transparent">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[9px] text-gold-light/60 uppercase tracking-widest ml-1">Kehadiran</label>
+                        <select id="hadir" class="w-full border-b border-gold-primary/30 py-3 text-xs outline-none focus:border-gold-primary transition bg-transparent cursor-pointer">
+                            <option value="Hadir" class="bg-[#4a2a05]">Saya Akan Hadir</option>
+                            <option value="Tidak Hadir" class="bg-[#4a2a05]">Maaf, Tidak Bisa Hadir</option>
+                        </select>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[9px] text-gold-light/60 uppercase tracking-widest ml-1">Pesan</label>
+                        <textarea id="pesan" placeholder="Tulis ucapan selamat..." class="w-full border-b border-gold-primary/30 py-3 text-xs outline-none focus:border-gold-primary transition h-24 resize-none bg-transparent"></textarea>
+                    </div>
+                    <button onclick="kirimWA()" class="btn-gold w-full mt-8">Kirim Ucapan</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-24 text-center">
+            <div class="flex justify-center w-full px-4 mb-4">
+                <h2 class="font-handwriting gold-text footer-title">Bimo & Anisa</h2>
+            </div>
+            <p class="text-[10px] tracking-[0.6em] text-gold-light/30 uppercase font-light">Matur Nuwun</p>
+        </footer>
+
+    </main>
+
+    <!-- Navigasi Dock -->
+    <nav class="nav-dock">
+        <a href="#home" class="nav-icon">HOME</a>
+        <a href="#couple" class="nav-icon">COUPLE</a>
+        <a href="#gallery" class="nav-icon">GALLERY</a>
+        <a href="#gift" class="nav-icon">GIFT</a>
+    </nav>
+
+    <script>
+        function bukaUndangan() {
+            const overlay = document.getElementById('overlay');
+            const main = document.getElementById('main-content');
+            const audio = document.getElementById('musik');
+            
+            overlay.classList.add('animate__animated', 'animate__fadeOut');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                main.classList.remove('opacity-0');
+                audio.play().catch(e => console.log("Autoplay blocked"));
+                startCountdown();
+                initAnimations();
+            }, 800);
+        }
+
+        function copyToClipboard(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert('Nomor rekening ' + text + ' berhasil disalin!');
+        }
+
+        function kirimWA() {
+            const nama = document.getElementById('nama').value;
+            const hadir = document.getElementById('hadir').value;
+            const pesan = document.getElementById('pesan').value;
+            
+            if(!nama || !pesan) {
+                alert('Mohon lengkapi nama dan pesan Anda.');
+                return;
+            }
+
+            // Ganti nomor ini dengan nomor tujuan yang benar
+            const noWA = "628123456789"; 
+            const text = `Halo Bimo & Anisa,\n\nSaya *${nama}*.\nKonfirmasi: *${hadir}*\n\nUcapan: "${pesan}"\n\nTerima kasih!`;
+            
+            const waUrl = `https://wa.me/${noWA}?text=${encodeURIComponent(text)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startCountdown() {
+            const target = new Date("feb 26, 2026 08:00:00").getTime();
+            setInterval(() => {
+                const now = new Date().getTime();
+                const d = target - now;
+                if (d < 0) return;
+                document.getElementById('hari').innerText = Math.floor(d / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('jam').innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('menit').innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('detik').innerText = Math.floor((d % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        function initAnimations() {
+            const sr = ScrollReveal({ duration: 1500, distance: '20px', easing: 'cubic-bezier(0.5, 0, 0, 1)', reset: false });
+            sr.reveal('.reveal-top', { origin: 'top' });
+            sr.reveal('.reveal-bottom', { origin: 'bottom', interval: 150 });
+            sr.reveal('.reveal-left', { origin: 'left' });
+            sr.reveal('.reveal-right', { origin: 'right' });
+        }
+    </script>
+</body>
+</html>
